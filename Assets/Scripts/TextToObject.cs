@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEditor;
 
 //An Array or List of a custom class like this will have a name variable for you to change
@@ -32,17 +33,17 @@ public class TextToObject : MonoBehaviour
     public List<string> colors = new List<string>() { "yellow", "green", "blue", "red", "black", "white" };
     public List<stringFloatPair> sizes = new List<stringFloatPair>();
     private GameObject myPrefab;
-    public string input;
     private List<string> inputWords = new List<string>();
     private List<string> inputNouns = new List<string>();
     private GameObject item;
     private Object[] prefabList;
+    public void GetInput(string input) {
+        convertToObject(input);
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        
-        convertToObject(input);
 
     }
 
@@ -113,6 +114,7 @@ public class TextToObject : MonoBehaviour
             item = Instantiate(myPrefab,
                                transform.position,
                                Quaternion.identity);
+            inputNouns.Clear();
         }
         else
         {
@@ -122,7 +124,8 @@ public class TextToObject : MonoBehaviour
             }
             else
             {
-                Debug.Log("Too many nouns!");
+                Debug.Log("Too many nouns:"+inputNouns.Count);
+                inputNouns.Clear();
             }
         }
 
