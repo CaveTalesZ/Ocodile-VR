@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
+using UnityEditor;
 
 //An Array or List of a custom class like this will have a name variable for you to change
 //[System.Serializable]//makes sure this shows up in the inspector
@@ -12,9 +13,24 @@ using UnityEngine;
 //}
 public class TextToObject : MonoBehaviour
 {
+    [System.Serializable]
+    public class SynonymDictionary
+    {
+        public string name = "";
+        public List<string> synonyms = new List<string>();
+    }
 
-    public List<string> nouns = new List<string>();
-    private List<string> colors = new List<string>() { "yellow", "green", "blue", "red", "black", "white" };
+    [System.Serializable]
+    public class stringFloatPair
+    {
+        public string name = "";
+        public float value = 0;
+    }
+
+    public List<SynonymDictionary> nouns = new List<SynonymDictionary>() {  };
+    
+    public List<string> colors = new List<string>() { "yellow", "green", "blue", "red", "black", "white" };
+    public List<stringFloatPair> sizes = new List<stringFloatPair>();
     private GameObject myPrefab;
     public string input;
     private List<string> inputWords = new List<string>();
@@ -25,7 +41,9 @@ public class TextToObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         convertToObject(input);
+
     }
 
     /* Get (input)
@@ -46,7 +64,7 @@ public class TextToObject : MonoBehaviour
     }
 
     // Takes a string as input and turns it into a fully fledged object
-    void convertToObject(string input)
+    GameObject convertToObject(string input)
     {
         // Separates input into multiple words if necessary
         string word = "";
@@ -71,9 +89,20 @@ public class TextToObject : MonoBehaviour
         foreach (string possibleNoun in inputWords)
         {
             string noun = possibleNoun[0].ToString().ToUpper() + possibleNoun.Substring(1).ToLower();
-            if (nouns.Contains(noun))
+            foreach (SynonymDictionary definition in nouns)
             {
-                inputNouns.Add(noun);
+                // Check for synonyms
+                foreach(string synonym in definition.synonyms)
+                {
+                    if(noun == synonym)
+                    {
+                        noun = definition.name;
+                    }
+                }
+                if (definition.name == noun)
+                {
+                    inputNouns.Add(noun);
+                }
             }
         }
 
@@ -97,6 +126,7 @@ public class TextToObject : MonoBehaviour
             }
         }
 
+        // Checks all words for possible uses as adjectives
         foreach (string possibleAdjective in inputWords)
         {
             string adjective = possibleAdjective.ToLower();
@@ -104,13 +134,47 @@ public class TextToObject : MonoBehaviour
             {
                 ModifyColour(adjective);
             }
+            foreach(stringFloatPair size in sizes)
+            {
+                
+                if(adjective == size.name.ToLower())
+                {
+                    ModifySize(size.value);
+                }
+            }
         }
-        
+
+        return item;
+    }
+
+    void ModifySize(float size)
+    {
+        item.transform.localScale = new Vector3(item.transform.localScale.x * size, item.transform.localScale.y * size, item.transform.localScale.z * size);
     }
 
     //Changes the colour of the object
     void ModifyColour(string input)
     {
         item.GetComponent<Renderer>().material.color = (Color)typeof(Color).GetProperty(input.ToLowerInvariant()).GetValue(null, null);
+    }
+
+   
+    // Doesn't currently work, supposed to help automatically create support for new Objects
+    Dictionary<string, List<string>> ListAllObjects()
+    {
+        var totalList = new Dictionary<string, List<string>>();
+        //List<string> gameObjectList = new List<string>();
+        Object[] objectList = Resources.LoadAll("", typeof(GameObject));
+
+        foreach (GameObject newItem in objectList)
+        {
+            totalList[newItem.name] = new List<string>();
+        }
+
+
+
+        //foreach(GameObject in )
+
+        return totalList;
     }
 }
