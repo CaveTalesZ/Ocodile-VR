@@ -33,8 +33,8 @@ public class TextToObject : MonoBehaviour
     public List<string> colors = new List<string>() { "yellow", "green", "blue", "red", "black", "white" };
     public List<stringFloatPair> sizes = new List<stringFloatPair>();
     private GameObject myPrefab;
-    private List<string> inputWords = new List<string>();
-    private List<string> inputNouns = new List<string>();
+    private List<string> inputWords;
+    private List<string> inputNouns;
     private GameObject item;
     private Object[] prefabList;
     public void GetInput(string input) {
@@ -67,8 +67,10 @@ public class TextToObject : MonoBehaviour
     // Takes a string as input and turns it into a fully fledged object
     GameObject convertToObject(string input)
     {
-        // Separates input into multiple words if necessary
-        string word = "";
+    inputWords = new List<string>();
+    inputNouns = new List<string>();
+    // Separates input into multiple words if necessary
+    string word = "";
         for (int i = 0; i < input.Length; i++)
         {
             string c = "" + input[i];
