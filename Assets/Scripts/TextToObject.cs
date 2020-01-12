@@ -123,6 +123,7 @@ public class TextToObject : MonoBehaviour
             if(inputNouns.Count == 0)
             {
                 Debug.Log("No nouns!");
+                Debug.Log(inputWords[0]);
             }
             else
             {
@@ -147,6 +148,14 @@ public class TextToObject : MonoBehaviour
                     ModifySize(size.value);
                 }
             }
+            switch(adjective)
+            {
+                case "edible":
+                    item.GetComponent<ObjectTags>().Edible = true;
+                    break;
+                default:
+                    break;
+            }
         }
 
         return item;
@@ -163,7 +172,6 @@ public class TextToObject : MonoBehaviour
         item.GetComponent<Renderer>().material.color = (Color)typeof(Color).GetProperty(input.ToLowerInvariant()).GetValue(null, null);
     }
 
-   
     // Doesn't currently work, supposed to help automatically create support for new Objects
     Dictionary<string, List<string>> ListAllObjects()
     {

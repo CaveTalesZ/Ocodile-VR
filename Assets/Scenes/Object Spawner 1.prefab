@@ -1,0 +1,281 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5680024498114151476
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5680024498114151478}
+  - component: {fileID: 5680024498114151477}
+  m_Layer: 0
+  m_Name: Object Spawner 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5680024498114151478
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5680024498114151476}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.01, y: 1.96, z: 2.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5680024498114151477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5680024498114151476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cb977d1530dc26498ca742ee2c907ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nouns:
+  - name: Cube
+    synonyms:
+    - Box
+  - name: Cylinder
+    synonyms: []
+  - name: Sphere
+    synonyms:
+    - Ball
+    - Orb
+  - name: Axe
+    synonyms:
+    - Hatchet
+  - name: Banana
+    synonyms: []
+  - name: Barrel
+    synonyms:
+    - Vat
+  - name: Bat
+    synonyms: []
+  - name: Bench
+    synonyms: []
+  - name: Boat
+    synonyms:
+    - Ship
+    - Lifeboat
+  - name: Bomb
+    synonyms:
+    - Explosive
+    - Grenade
+  - name: Book
+    synonyms:
+    - Diary
+    - Dictionary
+    - Novel
+    - Encyclopedia
+    - Bible
+    - Hardcover
+    - Textbook
+  - name: Brick
+    synonyms: []
+  - name: Bucket
+    synonyms: []
+  - name: Bulb
+    synonyms: []
+  - name: Buoy
+    synonyms:
+    - Float
+  - name: Button
+    synonyms: []
+  - name: Campfire
+    synonyms:
+    - Bonfire
+  - name: Candle
+    synonyms:
+    - Torch
+  - name: Candy
+    synonyms:
+    - Sweet
+  - name: Carrot
+    synonyms: []
+  - name: Chair
+    synonyms:
+    - Seat
+  - name: Coconut
+    synonyms: []
+  - name: Coin
+    synonyms:
+    - Cash
+    - Change
+    - Money
+  - name: Cone
+    synonyms: []
+  - name: Cup
+    synonyms:
+    - Chalice
+    - Goblet
+  - name: Diamond
+    synonyms:
+    - Gem
+    - Jewel
+    - Rhinestone
+  - name: Disc
+    synonyms: []
+  - name: Donut
+    synonyms: []
+  - name: Egg
+    synonyms: []
+  - name: Fence
+    synonyms: []
+  - name: Flag
+    synonyms: []
+  - name: Flower
+    synonyms: []
+  - name: Foot
+    synonyms: []
+  - name: Fork
+    synonyms: []
+  - name: Ghost
+    synonyms: []
+  - name: Glasses
+    synonyms:
+    - Eyeglasses
+  - name: Hand
+    synonyms: []
+  - name: Ice
+    synonyms: []
+  - name: Ice-cream
+    synonyms: []
+  - name: Key
+    synonyms: []
+  - name: Knife
+    synonyms:
+    - Blade
+  - name: Ladder
+    synonyms: []
+  - name: Lamp
+    synonyms:
+    - Light
+  - name: Laptop
+    synonyms:
+    - PC
+    - Computer
+    - Minicomputer
+  - name: Leaf
+    synonyms: []
+  - name: Loupe
+    synonyms:
+    - Lens
+  - name: Magnet
+    synonyms: []
+  - name: Map
+    synonyms: []
+  - name: Match
+    synonyms: []
+  - name: Monocle
+    synonyms:
+    - Eyeglass
+  - name: Mug
+    synonyms: []
+  - name: Mushroom
+    synonyms: []
+  - name: Needle
+    synonyms: []
+  - name: Nigel
+    synonyms: []
+  - name: Pan
+    synonyms: []
+  - name: Pencil
+    synonyms: []
+  - name: Phone
+    synonyms:
+    - Mobile
+  - name: Plank
+    synonyms: []
+  - name: Plate
+    synonyms:
+    - Platter
+  - name: Pyramid
+    synonyms: []
+  - name: Ring
+    synonyms: []
+  - name: Rope
+    synonyms: []
+  - name: Shelf
+    synonyms: []
+  - name: Shovel
+    synonyms:
+    - Spade
+  - name: Sign
+    synonyms: []
+  - name: Soap
+    synonyms:
+    - Detergent
+  - name: Spoon
+    synonyms: []
+  - name: Sun
+    synonyms: []
+  - name: Sunglasses
+    synonyms:
+    - Shades
+  - name: Pool
+    synonyms: []
+  - name: Table
+    synonyms:
+    - Desk
+  - name: Tent
+    synonyms: []
+  - name: Toilet-paper
+    synonyms: []
+  - name: Toothbrush
+    synonyms: []
+  - name: Hat
+    synonyms: []
+  - name: Vase
+    synonyms: []
+  - name: Wheel
+    synonyms: []
+  - name: Pig
+    synonyms: []
+  - name: Cow
+    synonyms: []
+  - name: Sheep
+    synonyms: []
+  - name: Hedgehog
+    synonyms: []
+  colors:
+  - yellow
+  - green
+  - blue
+  - red
+  - black
+  - white
+  sizes:
+  - name: Big
+    value: 2
+  - name: Small
+    value: 0.5
+  - name: Huge
+    value: 3
+  - name: Giant
+    value: 3
+  - name: Gigantic
+    value: 3
+  - name: Gargantuan
+    value: 5
+  - name: Tiny
+    value: 0.1
+  - name: Medium
+    value: 1
+  - name: Large
+    value: 2
+  - name: Great
+    value: 2
+  - name: Enormous
+    value: 6
