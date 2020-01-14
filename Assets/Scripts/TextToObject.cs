@@ -44,7 +44,7 @@ public class TextToObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     /* Get (input)
@@ -151,6 +151,10 @@ public class TextToObject : MonoBehaviour
             switch(adjective)
             {
                 case "edible":
+                case "nutritious":
+                case "delicious":
+                case "tasty":
+                case "scrumptious":
                     item.GetComponent<ObjectTags>().Edible = true;
                     break;
                 default:
