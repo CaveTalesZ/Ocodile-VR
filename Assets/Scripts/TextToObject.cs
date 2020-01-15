@@ -44,7 +44,7 @@ public class TextToObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        convertToObject("CUBE");
     }
 
     /* Get (input)
@@ -65,7 +65,7 @@ public class TextToObject : MonoBehaviour
     }
 
     // Takes a string as input and turns it into a fully fledged object
-    GameObject convertToObject(string input)
+    public GameObject convertToObject(string input)
     {
     inputWords = new List<string>();
     inputNouns = new List<string>();
@@ -112,11 +112,12 @@ public class TextToObject : MonoBehaviour
         // Turns a single noun into an object, error otherwise.
         if (inputNouns.Count == 1)
         {
-            myPrefab = (GameObject)Resources.Load(inputNouns[0]);
+            myPrefab = (GameObject)Resources.Load("Objects/" + inputNouns[0]);
             item = Instantiate(myPrefab,
                                transform.position,
                                Quaternion.identity);
             inputNouns.Clear();
+            
         }
         else
         {

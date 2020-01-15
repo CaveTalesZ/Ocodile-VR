@@ -20,7 +20,6 @@ public class ChallengeChecker : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        Debug.Log(collision.gameObject.name);
         foreach(string item in Solutions)
         {
             if(collision.gameObject.name == item)
