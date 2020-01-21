@@ -44,7 +44,7 @@ public class TextToObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        convertToObject("CUBE");
+        
     }
 
     /* Get (input)
@@ -116,6 +116,7 @@ public class TextToObject : MonoBehaviour
             item = Instantiate(myPrefab,
                                transform.position,
                                Quaternion.identity);
+            item.name = inputNouns[0];
             inputNouns.Clear();
             
         }

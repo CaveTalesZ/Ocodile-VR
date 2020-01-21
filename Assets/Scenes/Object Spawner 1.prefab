@@ -241,14 +241,6 @@ MonoBehaviour:
     synonyms: []
   - name: Wheel
     synonyms: []
-  - name: Pig
-    synonyms: []
-  - name: Cow
-    synonyms: []
-  - name: Sheep
-    synonyms: []
-  - name: Hedgehog
-    synonyms: []
   colors:
   - yellow
   - green
