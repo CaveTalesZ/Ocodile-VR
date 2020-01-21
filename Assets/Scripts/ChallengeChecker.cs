@@ -54,6 +54,8 @@ public class ChallengeChecker : MonoBehaviour
             {
                 Debug.Log("Hi Nigel");
                 NigelSound.Play();
+                SolvedSound.Stop();
+                ChallengeSolved = true;
             }
             else
             {
