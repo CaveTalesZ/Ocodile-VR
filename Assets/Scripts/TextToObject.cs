@@ -36,7 +36,19 @@ public class TextToObject : MonoBehaviour
     private List<string> inputWords;
     private List<string> inputNouns;
     private GameObject item;
+    public GameObject errorLog;
+    private string errorMessage;
     private Object[] prefabList;
+    private int position;
+    private int nounPosition;
+    private bool recolor;
+    private string newColor;
+    private int colorPosition;
+    private bool resize;
+    private float newScale;
+    private int sizePosition;
+    private bool succesfulSpawn;
+    private string itemName;
     public void GetInput(string input) {
         convertToObject(input);
     }
@@ -67,10 +79,12 @@ public class TextToObject : MonoBehaviour
     // Takes a string as input and turns it into a fully fledged object
     public GameObject convertToObject(string input)
     {
-    inputWords = new List<string>();
-    inputNouns = new List<string>();
-    // Separates input into multiple words if necessary
-    string word = "";
+        succesfulSpawn = false;
+        myPrefab = new GameObject();
+        inputWords = new List<string>();
+        inputNouns = new List<string>();
+        // Separates input into multiple words if necessary
+        string word = "";
         for (int i = 0; i < input.Length; i++)
         {
             string c = "" + input[i];
@@ -87,10 +101,11 @@ public class TextToObject : MonoBehaviour
         }
         inputWords.Add(word);
 
-        
+        position = 0;
         // Checks all words for any nouns
         foreach (string possibleNoun in inputWords)
         {
+            position = position + 1;
             string noun = possibleNoun[0].ToString().ToUpper() + possibleNoun.Substring(1).ToLower();
             foreach (SynonymDictionary definition in nouns)
             {
@@ -113,55 +128,113 @@ public class TextToObject : MonoBehaviour
         if (inputNouns.Count == 1)
         {
             myPrefab = (GameObject)Resources.Load("Objects/" + inputNouns[0]);
-            item = Instantiate(myPrefab,
-                               transform.position,
-                               Quaternion.identity);
-            item.name = inputNouns[0];
+            succesfulSpawn = true;
+            nounPosition = position;
+            itemName = inputNouns[0];
             inputNouns.Clear();
-            
         }
         else
         {
             if(inputNouns.Count == 0)
             {
-                Debug.Log("No nouns!");
-                Debug.Log(inputWords[0]);
+                errorMessage = "No recognized nouns";
             }
             else
             {
-                Debug.Log("Too many nouns:"+inputNouns.Count);
+                errorMessage = "Too many nouns";
                 inputNouns.Clear();
             }
         }
 
+        position = 0;
+        colorPosition = 0;
+        sizePosition = 0;
+        newScale = 1;
         // Checks all words for possible uses as adjectives
         foreach (string possibleAdjective in inputWords)
         {
+            position = position + 1;
             string adjective = possibleAdjective.ToLower();
             if (colors.Contains(adjective))
             {
-                ModifyColour(adjective);
+                if (position < nounPosition)
+                {
+                    if (colorPosition == 0)
+                    {
+                        colorPosition = position;
+                        newColor = adjective;
+                        recolor = true;
+                    }
+                    else
+                    {
+                        errorMessage = "No more than 1 colour!";
+                        succesfulSpawn = false;
+                    }
+                }
+                else
+                {
+                    errorMessage = "Adjectives before nouns!";
+                    succesfulSpawn = false;
+                }
             }
-            foreach(stringFloatPair size in sizes)
+            else foreach(stringFloatPair size in sizes)
             {
                 
                 if(adjective == size.name.ToLower())
                 {
-                    ModifySize(size.value);
+                    if (position < nounPosition)
+                    {
+                        sizePosition = position;
+                        resize = true;
+                        newScale = newScale * size.value;
+                        
+                    }
+                    else
+                    {
+                        errorMessage = "Adjectives before nouns!";
+                        succesfulSpawn = false;
+                    }
+                    
                 }
             }
-            switch(adjective)
+            //switch(adjective)
+            //{
+            //    case "edible":
+            //    case "nutritious":
+            //    case "delicious":
+            //    case "tasty":
+            //    case "scrumptious":
+            //        item.GetComponent<ObjectTags>().Edible = true;
+            //        break;
+            //    default:
+            //        break;
+            //}
+        }
+
+        if(sizePosition > colorPosition && colorPosition > 0 && sizePosition > 0)
+        {
+            errorMessage = "Size before colour!";
+            succesfulSpawn = false;
+        }
+
+        if(succesfulSpawn)
+        {
+            item = Instantiate(myPrefab,
+                               transform.position,
+                               Quaternion.identity);
+            item.name = itemName;
+            ModifySize(newScale);
+            if(recolor)
             {
-                case "edible":
-                case "nutritious":
-                case "delicious":
-                case "tasty":
-                case "scrumptious":
-                    item.GetComponent<ObjectTags>().Edible = true;
-                    break;
-                default:
-                    break;
+                ModifyColour(newColor);
             }
+            errorLog.GetComponentInChildren<Text>().text = "";
+            errorMessage = "";
+        }
+        else
+        {
+            Debug.Log(errorMessage);
+            errorLog.GetComponentInChildren<Text>().text = errorMessage;
         }
 
         return item;

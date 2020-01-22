@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 7856058912880736329}
   - component: {fileID: 4484136751275164848}
   - component: {fileID: -701297154488739485}
-  - component: {fileID: 4208341584922113095}
   - component: {fileID: -5636814769973193951}
+  - component: {fileID: 951305551281800051}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -98,20 +98,6 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
---- !u!64 &4208341584922113095
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2739891247687004268}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 5302568919011541938, guid: 7a1f7bd610d953d448f67a7b714dd194, type: 3}
 --- !u!54 &-5636814769973193951
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -128,3 +114,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &951305551281800051
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2739891247687004268}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.9999995, y: 6.9999995, z: 6.9999995}
+  m_Center: {x: 0, y: 0, z: 0}

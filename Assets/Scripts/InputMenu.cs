@@ -9,6 +9,7 @@ public class InputMenu : MonoBehaviour
     private List<Button> Letters;
     public GameObject Preview;
     public GameObject objectSpawner;
+    public GameObject Error;
     private string PreviewText;
     // Start is called before the first frame update
     void Start()
